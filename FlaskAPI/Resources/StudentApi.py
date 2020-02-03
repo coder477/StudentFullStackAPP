@@ -34,9 +34,7 @@ class StudentInsertionApi(Resource):
         try:
             req = request.get_json()
             student = Service.savetodb(req)
-            response=req
-            response['uuid']=student
-            return Response(json.dumps(response),
+            return Response(json.dumps(student),
                             mimetype="application/json", status=200)
         except (exceptions.BadRequest, KeyError, TypeError):
             raise BadRequestError
@@ -89,7 +87,6 @@ class StudentModificationApi(Resource):
     def get(self, uuid):
         try:
             res = Service.getStudent(uuid)
-            print("Rsss", res)
             return res
         except (TypeError):
             raise SchemaValidationError

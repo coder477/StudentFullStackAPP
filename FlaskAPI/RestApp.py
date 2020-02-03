@@ -10,8 +10,10 @@ from Utils.Errors import errors
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/api/*": {"origins": "*"}}) # CORS setting up for all domains
 api = Api(app, errors=errors)
+
+"""Initialize API resources"""
 
 api.add_resource(StudentApi.StudentsApi, '/api/students')
 api.add_resource(StudentApi.StudentInsertionApi, '/api/student')

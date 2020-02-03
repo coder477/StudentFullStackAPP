@@ -8,7 +8,6 @@ import unittest
 from unittest import TestCase
 import json
 from RestApp import app
-import logging
 
 
 
@@ -19,7 +18,6 @@ class Test(TestCase):
         self.STUDENT_ERROR_URL = 'http://localhost:5000/api/student/a561dbf7-d0ed-404c-ad7e-46c10f9271'
         self.POST_STUDENT_URL = 'http://localhost:5000/api/student'
         self.STUDENT_URL='http://localhost:5000/api/student/'
-        
         self.app = app.test_client()
         self.app.testing = True
         
@@ -38,18 +36,19 @@ class Test(TestCase):
         response = self.app.post(self.POST_STUDENT_URL,
                                 data=json.dumps(student),
                                 content_type='application/json')
-        print(response.get_data())
         student = json.loads(response.get_data())
         self.assertEqual(response.status_code, 200)
         student_id=student['uuid']
         self.STUDENT_URL=self.STUDENT_URL+student_id
         
         """Getting the inserted student details"""
+        
         response = self.app.get(self.STUDENT_URL)
         data = json.loads(response.get_data())
         self.assertEqual(response.status_code, 200)
         
         """insert a second student data"""
+        
         student = {
         "id": 12,
         "name": "Name2",
@@ -132,7 +131,6 @@ class Test(TestCase):
                                 data=json.dumps(student),
                                 content_type='application/json')
         data = json.loads(response.get_data())
-        print("data",data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(data, 'Given id does not exist.')
 
