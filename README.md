@@ -13,13 +13,14 @@ $ docker-compose up // from application's location (takes little time to set up 
  
 * Testing APIs without UI from Terminal/POSTMAN
 
+
   Insert a student data
   
-  `curl -X POST 'http://localhost:50000/api/student'`
+  `curl -X POST   http://localhost:5000/api/student   -H 'content-type: application/json'   -d '{"class": 3, "name":"Steve Jones",    "sex":    "male",    "age": 22,    "siblings":    1,"gpa":7.25}'` 
   
   Get all students Data
  
- `curl -X GET 'http://localhost:5000/api/students'`
+  `curl -X GET 'http://localhost:5000/api/students'`
   
   Get a student data
   
@@ -27,7 +28,7 @@ $ docker-compose up // from application's location (takes little time to set up 
   
   Update a student data
   
-  `curl -X PUT 'http://localhost:50000/api/student/<uuid>'`
+  `curl -X PUT   http://localhost:5000/api/student/<uuid>   -H 'content-type: application/json'   -d '{"class": 3,   "name":"newname",  "sex": "male",  "age":10,  "siblings":  1,"gpa":7.25}'`
   
   Delete a student data
   
@@ -39,6 +40,6 @@ $ docker-compose up // from application's location (takes little time to set up 
 * pymysql for MySQL connection
 
 ### Improvements:
-* Unit Tests can be added (Added only Integration testing due to time constraint)
+* Unit Tests can be added (Added only Integration testing in the application here)
 * React App is a simple application and interface and validations can be improved. 
 
